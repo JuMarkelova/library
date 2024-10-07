@@ -1,6 +1,11 @@
 package ru.markelova.library.service;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.markelova.library.dto.AuthorDto;
 import ru.markelova.library.dto.BookDto;
@@ -17,6 +22,32 @@ public class AuthorServiceImpl implements AuthorService{
     @Override
     public AuthorDto getAuthorById(Long id) {
         Author author = authorRepository.findById(id).orElseThrow();
+        return convertToDto(author);
+    }
+
+    @Override
+    public AuthorDto getAuthorByNameV1(String name) {
+        Author author = authorRepository.findAuthorByName(name).orElseThrow();
+        return convertToDto(author);
+    }
+
+    @Override
+    public AuthorDto getAuthorByNameV2(String name) {
+        Author author = authorRepository.findAuthorByNameBySql(name).orElseThrow();
+        return convertToDto(author);
+    }
+
+    @Override
+    public AuthorDto getAuthorByNameV3(String name) {
+        Specification<Author> authorSpecification = Specification.where(new Specification<Author>() {
+            @Override
+            public Predicate toPredicate(Root<Author> root,
+                                         CriteriaQuery<?> query,
+                                         CriteriaBuilder criteriaBuilder) {
+                return criteriaBuilder.equal(root.get("name"), name);
+            }
+        });
+        Author author = authorRepository.findOne(authorSpecification).orElseThrow();
         return convertToDto(author);
     }
 

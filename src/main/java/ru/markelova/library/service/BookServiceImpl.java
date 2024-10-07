@@ -22,14 +22,6 @@ public class BookServiceImpl implements BookService {
         return convertEntityToDto(book);
     }
 
-    private BookDto convertEntityToDto(Book book) {
-        return BookDto.builder()
-                .id(book.getId())
-                .genre(book.getGenre().getName())
-                .name(book.getName())
-                .build();
-    }
-
     @Override
     public BookDto getByNameV2(String name) {
         Book book = bookRepository.findBookByNameBySql(name).orElseThrow();
@@ -50,4 +42,11 @@ public class BookServiceImpl implements BookService {
         return convertEntityToDto(book);
     }
 
+    private BookDto convertEntityToDto(Book book) {
+        return BookDto.builder()
+                .id(book.getId())
+                .genre(book.getGenre().getName())
+                .name(book.getName())
+                .build();
+    }
 }

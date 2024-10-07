@@ -12,7 +12,7 @@ import ru.markelova.library.service.BookService;
 public class BookController {
     private final BookService bookService;
 
-    @GetMapping("/book")
+    @GetMapping("/book/v1")
     BookDto getBookByName(@RequestParam(value = "name", required = false) String name) {
         return bookService.getByNameV1(name);
     }
