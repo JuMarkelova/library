@@ -1,11 +1,10 @@
 package ru.markelova.library.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.markelova.library.dto.AuthorCreateDto;
 import ru.markelova.library.dto.AuthorDto;
+import ru.markelova.library.dto.AuthorUpdateDto;
 import ru.markelova.library.service.AuthorService;
 
 @RestController
@@ -31,5 +30,20 @@ public class AuthorController {
     @GetMapping("/author/v3")
     AuthorDto getAuthorByNameV3(@RequestParam(value = "name", required = false) String name) {
         return authorService.getAuthorByNameV3(name);
+    }
+
+    @PostMapping("/author/create")
+    AuthorDto createAuthor(@RequestBody AuthorCreateDto authorCreateDto) {
+        return authorService.createAuthor(authorCreateDto);
+    }
+
+    @PutMapping("/author/update")
+    AuthorDto updateAuthor(@RequestBody AuthorUpdateDto authorUpdateDto) {
+        return authorService.updateAuthor(authorUpdateDto);
+    }
+
+    @DeleteMapping("/author/delete/{id}")
+    void deleteAuthor(@PathVariable("id") Long id) {
+        authorService.deleteAuthor(id);
     }
 }
