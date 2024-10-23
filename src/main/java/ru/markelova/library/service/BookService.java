@@ -4,6 +4,8 @@ import ru.markelova.library.dto.BookCreateDto;
 import ru.markelova.library.dto.BookDto;
 import ru.markelova.library.dto.BookUpdateDto;
 
+import java.util.List;
+
 public interface BookService {
     BookDto getByNameV1(String name);
 
@@ -16,4 +18,6 @@ public interface BookService {
     BookDto updateBook(BookUpdateDto bookUpdateDto);
 
     void deleteBook(Long id);
+
+    public List<BookDto> getAllBooks();
 }

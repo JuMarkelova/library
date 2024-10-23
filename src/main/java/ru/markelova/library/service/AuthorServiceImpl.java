@@ -14,7 +14,9 @@ import ru.markelova.library.dto.BookDto;
 import ru.markelova.library.model.Author;
 import ru.markelova.library.repository.AuthorRepository;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -93,6 +95,12 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AuthorDto> getAllAuthors() {
+        List<Author> authors = authorRepository.findAll();
+        return authors.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
     private Author convertDtoToEntity(AuthorCreateDto authorCreateDto) {
