@@ -1,3 +1,19 @@
+**week 22 /authors with user**
+
+<img width="1287" alt="scr_authors_2" src="https://github.com/user-attachments/assets/b20d04f4-9b63-49ab-9ff9-4ce7c17ec5f6">
+
+**week 22 /authors with admin**
+
+<img width="1304" alt="scr_authors_1" src="https://github.com/user-attachments/assets/e02cbb5e-79a5-4220-9c17-7e0d0ff0bdc4">
+
+**week 22 /books with admin**
+
+<img width="1259" alt="scr_books_2" src="https://github.com/user-attachments/assets/553350de-b8e7-43c6-ad14-a7dd336dc1cb">
+
+**week 22 /books with user**
+
+<img width="1284" alt="scr_books_1" src="https://github.com/user-attachments/assets/0abca328-4184-4f32-8b8e-6ad9d29b7e81">
+
 **week 21 html books**
 
 <img width="1323" alt="scr_1" src="https://github.com/user-attachments/assets/ee024837-171c-4a57-9404-b2c5e561a417">
