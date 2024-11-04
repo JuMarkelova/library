@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="add-user-role-tables" author="Iuliia">
+        <sql>
+            CREATE TABLE IF NOT EXISTS role (
+            id BIGSERIAL PRIMARY KEY,
+            name VARCHAR(50) NOT NULL
+            );
+
+            INSERT INTO role (name) VALUES ('admin'), ('user');
+
+            CREATE TABLE IF NOT EXISTS "user" (
+            id BIGSERIAL PRIMARY KEY,
+            username VARCHAR(100) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL
+            );
+
+            CREATE TABLE IF NOT EXISTS user_role (
+            user_id BIGINT NOT NULL,
+            role_id BIGINT NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES "user" (id),
+            FOREIGN KEY (role_id) REFERENCES "role" (id)
+            );
+
+            INSERT INTO "user" (username, password) VALUES
+            ('user', 'dXNlcnBhc3N3b3Jk'),
+            ('admin', 'YWRtaW5wYXNzd29yZA==');
+
+            INSERT INTO user_role (user_id, role_id) VALUES
+            ((SELECT id FROM "user" WHERE username='user'), (SELECT id FROM role WHERE name='user'));
+
+            INSERT INTO user_role (user_id, role_id) VALUES
+            ((SELECT id FROM "user" WHERE username='admin'), (SELECT id FROM role WHERE name='user')),
+            ((SELECT id FROM "user" WHERE username='admin'), (SELECT id FROM role WHERE name='admin'));
+        </sql>
+    </changeSet>
+</databaseChangeLog>

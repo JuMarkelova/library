@@ -5,4 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
     <include file="changelog/2024_09_26.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/2024_11_03.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/2024_11_03_update_passwords.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/2024_11_04_rename_user_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/2024_11_04_update_passwords.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
