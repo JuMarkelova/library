@@ -102,13 +102,13 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto) {
-        log.info("Update author");
+        log.info("Update author with id {}", authorUpdateDto.getId());
         Author author = authorRepository.findById(authorUpdateDto.getId()).orElseThrow();
         author.setName(authorUpdateDto.getName());
         author.setSurname(authorUpdateDto.getSurname());
         Author savedAuthor = authorRepository.save(author);
         AuthorDto authorDto = convertToDto(savedAuthor);
-        log.info("Author was updated successfully");
+        log.info("Author id {} was updated successfully", authorUpdateDto.getId());
         return authorDto;
     }
 
