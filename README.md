@@ -1,3 +1,11 @@
+**week 23 log book update, genre is not found**
+
+<img width="1597" alt="book_genre_not_found_log" src="https://github.com/user-attachments/assets/b3292231-337a-408c-9af3-0df3a17260f4">
+
+**week 23 log book update, book is not found**
+
+<img width="1625" alt="book_book_not_found_log" src="https://github.com/user-attachments/assets/59134590-c028-46ca-8e2d-5d188effc910">
+
 **week 22 /authors with user**
 
 <img width="1287" alt="scr_authors_2" src="https://github.com/user-attachments/assets/b20d04f4-9b63-49ab-9ff9-4ce7c17ec5f6">
