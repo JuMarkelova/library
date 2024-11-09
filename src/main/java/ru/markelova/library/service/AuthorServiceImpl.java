@@ -41,8 +41,16 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public AuthorDto getAuthorByNameV1(String name) {
-        Author author = authorRepository.findAuthorByName(name).orElseThrow();
-        return convertToDto(author);
+        log.info("Try to find author by name {}", name);
+        Optional<Author> author = authorRepository.findAuthorByName(name);
+        if (author.isPresent()) {
+            AuthorDto authorDto = convertToDto(author.get());
+            log.info("Author by name: {}", authorDto.toString());
+            return authorDto;
+        } else {
+            log.error("Author with name: {} not found", name);
+            throw new IllegalStateException("Author is not found");
+        }
     }
 
     @Override
@@ -86,29 +94,34 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public AuthorDto createAuthor(AuthorCreateDto authorCreateDto) {
+        log.info("Create author");
         Author author = authorRepository.save(convertDtoToEntity(authorCreateDto));
-        AuthorDto authorDto = convertToDto(author);
-        return authorDto;
+        log.info("Author was created successfully");
+        return convertToDto(author);
     }
 
     @Override
     public AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto) {
+        log.info("Update author");
         Author author = authorRepository.findById(authorUpdateDto.getId()).orElseThrow();
         author.setName(authorUpdateDto.getName());
         author.setSurname(authorUpdateDto.getSurname());
-
         Author savedAuthor = authorRepository.save(author);
         AuthorDto authorDto = convertToDto(savedAuthor);
+        log.info("Author was updated successfully");
         return authorDto;
     }
 
     @Override
     public void deleteAuthor(Long id) {
+        log.info("Delete author by id {}", id);
         authorRepository.deleteById(id);
+        log.info("Author with id {} was deleted", id);
     }
 
     @Override
     public List<AuthorDto> getAllAuthors() {
+        log.info("Get all authors");
         List<Author> authors = authorRepository.findAll();
         return authors.stream().map(this::convertToDto).collect(Collectors.toList());
     }
