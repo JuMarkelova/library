@@ -73,25 +73,6 @@ public class AuthorServiceImpl implements AuthorService {
         return convertToDto(author);
     }
 
-    private AuthorDto convertToDto(Author author) {
-        List<BookDto> bookDtoList = null;
-        if (author.getBooks() != null) {
-            bookDtoList = author.getBooks().stream()
-                    .map(book -> BookDto.builder()
-                            .genre(book.getGenre().getName())
-                            .name(book.getName())
-                            .id(book.getId())
-                            .build()
-                    ).toList();
-        }
-        return AuthorDto.builder()
-                .books(bookDtoList)
-                .id(author.getId())
-                .name(author.getName())
-                .surname(author.getSurname())
-                .build();
-    }
-
     @Override
     public AuthorDto createAuthor(AuthorCreateDto authorCreateDto) {
         log.info("Create author");
@@ -124,6 +105,26 @@ public class AuthorServiceImpl implements AuthorService {
         log.info("Get all authors");
         List<Author> authors = authorRepository.findAll();
         return authors.stream().map(this::convertToDto).collect(Collectors.toList());
+    }
+
+
+    private AuthorDto convertToDto(Author author) {
+        List<BookDto> bookDtoList = null;
+        if (author.getBooks() != null) {
+            bookDtoList = author.getBooks().stream()
+                    .map(book -> BookDto.builder()
+                            .genre(book.getGenre().getName())
+                            .name(book.getName())
+                            .id(book.getId())
+                            .build()
+                    ).toList();
+        }
+        return AuthorDto.builder()
+                .books(bookDtoList)
+                .id(author.getId())
+                .name(author.getName())
+                .surname(author.getSurname())
+                .build();
     }
 
     private Author convertDtoToEntity(AuthorCreateDto authorCreateDto) {
