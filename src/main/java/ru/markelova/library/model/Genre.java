@@ -10,6 +10,7 @@ import java.util.Set;
 @Builder
 @Getter
 @Entity
+@EqualsAndHashCode
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

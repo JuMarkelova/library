@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.markelova.library.model.Genre;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +19,5 @@ public class BookUpdateDto {
     @NotBlank
     @Size(max = 100)
     private String name;
-    private Long genre;
+    private Genre genre;
 }

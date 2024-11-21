@@ -73,7 +73,7 @@ public class BookServiceImpl implements BookService {
     public BookDto updateBook(BookUpdateDto bookUpdateDto) {
         log.info("Update book with id {}", bookUpdateDto.getId());
         Optional<Book> book = bookRepository.findById(bookUpdateDto.getId());
-        Optional<Genre> genre = genreRepository.findById(bookUpdateDto.getGenre());
+        Optional<Genre> genre = genreRepository.findById(bookUpdateDto.getGenre().getId());
         if (book.isPresent()) {
             if (genre.isPresent()) {
                 book.get().setName(bookUpdateDto.getName());
@@ -98,7 +98,6 @@ public class BookServiceImpl implements BookService {
 //        book.setName(bookUpdateDto.getName());
 //        book.setGenre(genre);
 
-
     }
 
     @Override
@@ -118,13 +117,13 @@ public class BookServiceImpl implements BookService {
     private BookDto convertEntityToDto(Book book) {
         return BookDto.builder()
                 .id(book.getId())
-                .genre(book.getGenre().getName())
+                .genre(book.getGenre())
                 .name(book.getName())
                 .build();
     }
 
     private Book convertDtoToEntity(BookCreateDto bookCreateDto) {
-        Genre genre = genreRepository.findById(bookCreateDto.getGenre())
+        Genre genre = genreRepository.findById(bookCreateDto.getGenre().getId())
                 .orElseThrow(() -> new RuntimeException("Genre not found"));
         return Book.builder()
                 .name(bookCreateDto.getName())

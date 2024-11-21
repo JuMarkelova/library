@@ -113,7 +113,7 @@ public class AuthorServiceImpl implements AuthorService {
         if (author.getBooks() != null) {
             bookDtoList = author.getBooks().stream()
                     .map(book -> BookDto.builder()
-                            .genre(book.getGenre().getName())
+                            .genre(book.getGenre())
                             .name(book.getName())
                             .id(book.getId())
                             .build()

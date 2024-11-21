@@ -64,14 +64,13 @@ public class AuthorServiceTest {
         String name = "Mary";
         String surname = "Boo";
         Set<Book> books = new HashSet<>();
-
         Author author = new Author(id, name, surname, books);
 
         when(authorRepository.findAuthorByName(name)).thenReturn(Optional.of(author));
 
         AuthorDto authorDto = authorService.getAuthorByNameV1(name);
-        verify(authorRepository).findAuthorByName(name);
 
+        verify(authorRepository).findAuthorByName(name);
         Assertions.assertEquals(authorDto.getId(), author.getId());
         Assertions.assertEquals(authorDto.getName(), author.getName());
         Assertions.assertEquals(authorDto.getSurname(), author.getSurname());
@@ -99,8 +98,8 @@ public class AuthorServiceTest {
         when(authorRepository.findAuthorByName(name)).thenReturn(Optional.of(author));
 
         AuthorDto authorDto = authorService.getAuthorByNameV2(name);
-        verify(authorRepository).findAuthorByName(name);
 
+        verify(authorRepository).findAuthorByName(name);
         Assertions.assertEquals(authorDto.getId(), author.getId());
         Assertions.assertEquals(authorDto.getName(), author.getName());
         Assertions.assertEquals(authorDto.getSurname(), author.getSurname());
