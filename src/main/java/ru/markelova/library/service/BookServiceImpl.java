@@ -90,14 +90,6 @@ public class BookServiceImpl implements BookService {
             log.error("Book id {} is not found", bookUpdateDto.getId());
             throw new IllegalStateException("Book is not found");
         }
-
-//        Book book = bookRepository.findById(bookUpdateDto.getId())
-//                .orElseThrow(() -> new RuntimeException("Book not found"));
-//        Genre genre = genreRepository.findById(bookUpdateDto.getGenre())
-//                .orElseThrow(() -> new RuntimeException("Genre not found"));
-//        book.setName(bookUpdateDto.getName());
-//        book.setGenre(genre);
-
     }
 
     @Override
